@@ -1,9 +1,13 @@
 var fs = require('fs');
-var keys = require('./keys')
+var keys = require('./keys');
+var request = require('request');
 var command = process.argv[2];
-var query = process.argv[3];
+var queryArr = process.argv.slice(3);
+var query = queryArr.join('+') || 'Mr. Nobody';
+console.log(query);
+var queryURl = `http://www.omdbapi.com/?t=${query}`;
 
-var operations = operationsFactory(param);
+var operations = operationsFactory();
 
 switch (command){
 	case 'my-tweet':
@@ -22,7 +26,7 @@ switch (command){
 		console.log('Liri is not a witch. He can not do that.')
 }
 
-function operationsFactory(param){
+function operationsFactory(){
 	return{
 		tweet: function(){
 
@@ -30,11 +34,27 @@ function operationsFactory(param){
 		spotify: function(){
 
 		},
-		movie: function(){
+		movie: function(query){
+			request(queryURl, function(error, response, body){
+				if(!error && response.statusCode === 200){
+					console.log(JSON.parse(body).Title);
+					console.log(JSON.parse(body).Year);
+					console.log(JSON.parse(body).Rated);
+					console.log(JSON.parse(body).Country);
+					console.log(JSON.parse(body).Language);
+					console.log(JSON.parse(body).Plot);
+					console.log(JSON.parse(body).Actors);
+					var rotten = JSON.parse(body).Ratings[1];
+					console.log(rotten.Source+': '+rotten.Value);
+					console.log(JSON.parse(body).Website);
+
+
+				}
+			})
 
 		},
 		whatever: function(){
-			
+
 		}
 	}
 }
