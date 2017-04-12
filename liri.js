@@ -62,7 +62,7 @@ function operationsFactory(){
             console.log(artist.external_urls);
           });
         });
-});
+      });
 
 		},
 		movie: function(query){
