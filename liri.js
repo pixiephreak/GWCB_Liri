@@ -55,11 +55,11 @@ function operationsFactory(){
         }
 
         data.tracks.items.forEach(function(entry){
-          console.log(`Song Name: ${queryArr.join(' ')}`);
+          console.log(`Song Name: ${entry.name}`);
           console.log(`Album Name: ${entry.album.name}`);
           entry.album.artists.forEach(function(artist){
             console.log(`Artist: ${artist.name}`);
-            console.log(`See more: ${artist.href}`);
+            console.log(artist.external_urls);
           });
         });
 });
