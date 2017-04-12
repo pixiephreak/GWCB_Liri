@@ -31,7 +31,7 @@ switch (command){
 		operations.whatever();
 		break;
 	default:
-		console.log('Liri is not a witch. He can not do that.');
+		console.log('Command invlaid. Choose my-tweet, spotify-this-song, movie-this, or do-what-it-says to continue.');
 }
 
 function operationsFactory(){
