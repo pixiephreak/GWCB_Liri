@@ -12,4 +12,4 @@
 * To run the program run < Node > < filename > < command > in the shell.
 * (eg. Node liri.js my-tweet);
 
-* keys are freely provided for grading purposes for now. In the future, please contact me for keys and tokens
+* keys are freely provided for grading purposes for now. In the future, please contact me for keys and tokens.
