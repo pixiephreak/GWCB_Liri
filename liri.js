@@ -15,6 +15,7 @@ var client = new Twitter({
 });
 var spotify = require('spotify');
 var operations = operationsFactory();
+var randos = [operations.tweet, operations.spotify, operations.movie];
 
 switch (command){
 	case 'my-tweet':
@@ -82,7 +83,8 @@ function operationsFactory(){
 
 		},
 		whatever: function(){
-
+      var choice = Math.floor((Math.random() * 2));
+      randos[choice]();
 		}
 	}
 }
