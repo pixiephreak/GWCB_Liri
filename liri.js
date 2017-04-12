@@ -59,7 +59,9 @@ function operationsFactory(){
           console.log(`Album Name: ${entry.album.name}`);
           entry.album.artists.forEach(function(artist){
             console.log(`Artist: ${artist.name}`);
-            console.log(artist.external_urls);
+            for (url in artist.external_urls){
+              console.log(artist.external_urls[url])
+            };
           });
         });
       });
