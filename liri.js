@@ -23,7 +23,7 @@ switch (command){
 		break;
 	case 'spotify-this-song':
 		operations.spotify();
-		break
+		break;
 	case 'movie-this':
 		operations.movie();
 		break;
@@ -31,7 +31,7 @@ switch (command){
 		operations.whatever();
 		break;
 	default:
-		console.log('Liri is not a witch. He can not do that.')
+		console.log('Liri is not a witch. He can not do that.');
 }
 
 function operationsFactory(){
@@ -42,7 +42,7 @@ function operationsFactory(){
           tweets.statuses.forEach(function(tweet){
             console.log(`${tweet.text}`);
             console.log(`Tweeted on: ${tweet.created_at}`);
-          })
+          });
 
         }
       });
@@ -61,7 +61,7 @@ function operationsFactory(){
             console.log(`Artist: ${artist.name}`);
             console.log(`See more: ${artist.href}`);
           });
-        })
+        });
 });
 
 		},
@@ -79,12 +79,12 @@ function operationsFactory(){
 					console.log(rotten.Source+': '+rotten.Value);
 					console.log(JSON.parse(body).Website);
 				}
-			})
+			});
 
 		},
 		whatever: function(){
       var choice = Math.floor((Math.random() * 2));
       randos[choice]();
 		}
-	}
+	};
 }
