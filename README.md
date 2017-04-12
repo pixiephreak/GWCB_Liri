@@ -2,9 +2,9 @@
 ### create a Node.js command line program to retrieve data about online media.
 
 ## Node Dependencies:
-### npm install twitter
-### npm install request
-### npm install spotify
+* npm install twitter
+* npm install request
+* npm install spotify
 
 ## Instrucitons
 ### Commands: my-tweet, spotify-this-song, movie-this, or do-what-it-says.
