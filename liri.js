@@ -1,12 +1,19 @@
 var fs = require('fs');
-var keys = require('./keys');
 var request = require('request');
 var command = process.argv[2];
 var queryArr = process.argv.slice(3);
-var query = queryArr.join('+') || 'Mr. Nobody';
-console.log(query);
-var queryURl = `http://www.omdbapi.com/?t=${query}`;
-
+var movieQuery = queryArr.join('+') || 'Mr. Nobody';
+var songQuery = queryArr.join('+') || 'The Sign';
+var queryURl = `http://www.omdbapi.com/?t=${movieQuery}`;
+var Twitter = require('twitter');
+var keys = require('./keys');
+var client = new Twitter({
+  consumer_key: keys.twitterKeys.consumer_key,
+  consumer_secret: keys.twitterKeys.consumer_secret,
+  access_token_key: keys.twitterKeys.access_token_key,
+  access_token_secret: keys.twitterKeys.access_token_secret
+});
+var spotify = require('spotify');
 var operations = operationsFactory();
 
 switch (command){
@@ -29,9 +36,32 @@ switch (command){
 function operationsFactory(){
 	return{
 		tweet: function(){
+      client.get('search/tweets', {q: 'washingtonpost',count: 20}, function(error, tweets, response) {
+        if (!error) {
+          tweets.statuses.forEach(function(tweet){
+            console.log(`${tweet.text}`);
+            console.log(`Tweeted on: ${tweet.created_at}`);
+          })
 
+        }
+      });
 		},
 		spotify: function(){
+      spotify.search({ type: 'track', query: songQuery , count: 5 }, function(err, data) {
+        if ( err ) {
+          console.log('Error occurred: ' + err);
+          return;
+        }
+
+        data.tracks.items.forEach(function(entry){
+          console.log(`Song Name: ${queryArr.join(' ')}`);
+          console.log(`Album Name: ${entry.album.name}`);
+          entry.album.artists.forEach(function(artist){
+            console.log(`Artist: ${artist.name}`);
+            console.log(`See more: ${artist.href}`);
+          });
+        })
+});
 
 		},
 		movie: function(query){
@@ -47,8 +77,6 @@ function operationsFactory(){
 					var rotten = JSON.parse(body).Ratings[1];
 					console.log(rotten.Source+': '+rotten.Value);
 					console.log(JSON.parse(body).Website);
-
-
 				}
 			})
 
