@@ -1,4 +1,4 @@
-# GWCB_Liri
+# Liri
 ### create a Node.js command line program to retrieve data about online media.
 
 ## Node Dependencies:
